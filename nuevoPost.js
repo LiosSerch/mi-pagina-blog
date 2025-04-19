@@ -45,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
         titulo,
         resumen,
         contenido,
-        categoria,
         fecha: new Date().toISOString()
       };
       

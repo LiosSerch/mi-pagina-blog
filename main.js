@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
       tarjeta.innerHTML = `
         <h2>${post.titulo}</h2>
         <p>${post.resumen}</p>
-        <a href="post.html?id=${post.id}">Leer más</a>
+        <a href="posts.html?id=${post.id}">Leer más</a>
       `;
   
       contenedor.appendChild(tarjeta);
