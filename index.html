@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog de Luis</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-left">
+      <img src="Logo.png" alt="Logo" class="logo">
+      <button class="menu-toggle" id="menu-toggle">☰</button>
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="#">Categorías</a>
+        <a href="posts.html">Publicaciones</a>
+        <a href="nuevo.html" class="btn-nuevo responsive">➕ Nuevo Post</a> <!-- versión móvil -->
+      </nav>
+    </div>
+    <div class="nav-right">
+      <a href="nuevo.html" class="btn-nuevo desktop">➕ Nuevo Post</a> <!-- versión escritorio -->
+    </div>
+  </header>
+      
+
+  <main>
+    <h1>Últimos posts</h1>
+    <section class="posts" id="post-list">
+      <!-- Aquí van los posts generados con JS -->
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Blog de Luis. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    const toggleBtn = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+  
+    toggleBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+  
+    // Cerrar menú al hacer clic en cualquier link
+    const links = navLinks.querySelectorAll("a");
+    links.forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+    });
+  </script>
+  
+  
+</body>
+</html>
+
+
+

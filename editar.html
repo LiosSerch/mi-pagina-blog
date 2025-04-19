@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Editar publicación</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .formulario {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: #f0f0f0;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .formulario label {
+      font-weight: bold;
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .formulario input,
+    .formulario textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      resize: vertical;
+    }
+
+    .formulario button {
+      margin-top: 1.5rem;
+      background-color: #00ff88;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .formulario button:hover {
+      background-color: #00cc6f;
+    }
+
+    .contador {
+      font-size: 0.9rem;
+      color: #555;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+
+  <form class="formulario" id="form-editar">
+    <h2>✏️ Editar publicación</h2>
+
+    <label for="titulo">Título</label>
+    <input type="text" id="titulo" maxlength="60" required />
+    <div class="contador" id="contador-titulo">0 / 60</div>
+
+    <label for="resumen">Resumen</label>
+    <textarea id="resumen" maxlength="150" rows="3" required></textarea>
+    <div class="contador" id="contador-resumen">0 / 150</div>
+
+    <label for="contenido">Contenido</label>
+    <textarea id="contenido" rows="8" required></textarea>
+
+    <button type="submit">Guardar cambios</button>
+  </form>
+
+  <script>
+    const post = JSON.parse(localStorage.getItem("postSeleccionado"));
+
+    if (!post) {
+      alert("No se encontró la publicación para editar.");
+      window.location.href = "posts.html";
+    }
+
+    // Cargar los valores
+    const tituloInput = document.getElementById("titulo");
+    const resumenInput = document.getElementById("resumen");
+    const contenidoInput = document.getElementById("contenido");
+
+    tituloInput.value = post.titulo;
+    resumenInput.value = post.resumen;
+    contenidoInput.value = post.contenido;
+
+    // Contadores de caracteres
+    const contadorTitulo = document.getElementById("contador-titulo");
+    const contadorResumen = document.getElementById("contador-resumen");
+
+    function actualizarContador(input, contador, max) {
+      input.addEventListener("input", () => {
+        contador.textContent = `${input.value.length} / ${max}`;
+        if (input.value.length >= max) {
+          input.value = input.value.slice(0, max);
+        }
+      });
+      contador.textContent = `${input.value.length} / ${max}`;
+    }
+
+    actualizarContador(tituloInput, contadorTitulo, 60);
+    actualizarContador(resumenInput, contadorResumen, 150);
+
+    // Guardar cambios
+    document.getElementById("form-editar").addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const titulo = tituloInput.value.trim();
+      const resumen = resumenInput.value.trim();
+      const contenido = contenidoInput.value.trim();
+
+      if (titulo === "" || resumen === "" || contenido === "") {
+        alert("Por favor completa todos los campos.");
+        return;
+      }
+
+      let posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+      const postActualizado = {
+        ...post,
+        titulo,
+        resumen,
+        contenido
+      };
+
+      const nuevosPosts = posts.map(p => p.id === post.id ? postActualizado : p);
+
+      localStorage.setItem("posts", JSON.stringify(nuevosPosts));
+      localStorage.setItem("postSeleccionado", JSON.stringify(postActualizado));
+
+      alert("✅ Publicación actualizada con éxito.");
+      window.location.href = "ver.html";
+    });
+  </script>
+</body>
+</html>

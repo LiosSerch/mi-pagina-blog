@@ -1,0 +1,21 @@
+[
+    {
+      "id": 1,
+      "titulo": "Bienvenido a mi blog",
+      "resumen": "Este es el primer post. Aquí empieza todo.",
+      "contenido": "Contenido completo del primer post..."
+    },
+    {
+      "id": 2,
+      "titulo": "Segundo post: novedades",
+      "resumen": "Te cuento qué se viene para el blog en las próximas semanas.",
+      "contenido": "Contenido completo del segundo post..."
+    },
+    {
+      "id": 3,
+      "titulo": "Tips para escribir mejor",
+      "resumen": "Algunos consejos rápidos para mejorar tus textos.",
+      "contenido": "Contenido completo del tercer post..."
+    }
+  ]
+  

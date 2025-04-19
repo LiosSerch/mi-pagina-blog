@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nuevo Post</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-left">
+      <img src="Logo.png" alt="Logo" class="logo" />
+      <nav class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="#">Categorías</a>
+        <a href="posts.html">Publicaciones</a>
+        <a href="nuevo.html" class="active">➕ Nuevo Post</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="formulario-post">
+    <h1>📝 Crear Nuevo Post</h1>
+
+    <form id="form-post">
+      <label for="titulo">Título (máx. 50 caracteres):</label>
+      <input type="text" id="titulo" maxlength="50" required />
+
+      <label for="resumen">Resumen (máx. 150 caracteres):</label>
+      <textarea id="resumen" maxlength="150" required></textarea>
+
+      <label for="contenido">Contenido:</label>
+      <textarea id="contenido" required></textarea>
+
+      <button type="submit">Publicar</button>
+    </form>
+
+    <div id="mensaje-exito" class="mensaje-exito" style="display: none;"></div>
+  </main>
+
+  <script src="nuevoPost.js"></script>
+</body>
+</html>
